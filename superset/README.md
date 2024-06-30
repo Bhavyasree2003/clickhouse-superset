@@ -1,9 +1,10 @@
 ## superset deploymen into minikube
 
 * to intall __superset__ run the below commands
+* we are using helm __to immplent simple and best way__
 ```
 helm repo add superset https://apache.github.io/superset
-helm upgrade --install --values my-values.yaml superset superset/superset
+helm upgrade --install --values custom-values.yaml superset superset/superset
 ```
 
 *  the below are the reasons , to consider __custome-values.yaml__ file to install helm chat
