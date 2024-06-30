@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clickhouse-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clickhouse
+  template:
+    metadata:
+      labels:
+        app: clickhouse
+    spec:
+      containers:
+        - name: clickhouse
+          image: yandex/clickhouse-server:latest
+          ports:
+            - containerPort: 8123
+            - containerPort: 9000
+          volumeMounts:
+            - mountPath: /var/lib/clickhouse
+              name: clickhouse-storage
+            - mountPath: /etc/clickhouse-server/users.d
+              name: clickhouse-config
+      volumes:
+        - name: clickhouse-storage
+          persistentVolumeClaim:
+            claimName: clickhouse-pvc
+        - name: clickhouse-config
+          configMap:
+            name: clickhouse-config

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clickhouse-config
+data:
+  custom-users.xml: |
+    <clickhouse>
+      <users>
+        <default>
+          <password>Y2xpY2tob3VzZQ==</password>
+        </default>
+        <admin>
+          <password>Y2xpY2tob3VzZQ==</password>
+        </admin>
+      </users>
+    </clickhouse>
